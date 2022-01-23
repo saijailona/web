@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8"/>
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <link rel="stylesheet" href="assets/styles.css">
-  </head>
-  <body>
-    <p>
-      Hello! Open the developer tools, please.<br />
-      Start by editing the files in <code>src/</code> folder.
-    </p>
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Dummy lunch menu</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+  
+  <button id="lang">Fin</button>
+  <button id="sort">Järjestä</button>
+  <button id="random">Random</button>
+  <p id="menuE" style="display: block;"></p>
+  <p id="menuF" style="display: none;"></p>
+  <p id="randomDish"></p>
+
+
+  <script src="index.js"></script>
+</body>
+
 </html>
