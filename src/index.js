@@ -1,4 +1,4 @@
-import SodexoLunchMenu from './assets/sodexo-week-example.json';
+import SodexoLunchMenu from './assets/sodexo-day-example.json';
 // console.log(SodexoLunchMenu);
 
 const coursesEn = [];
@@ -11,7 +11,6 @@ let currentMenu = coursesFi;
  *
  * @param {string} menu - JSON Menu to be parsed
  */
-
 const parseSodexoMenu = (menu) => {
   const courses = Object.values(menu);
   for (const course of courses) {
@@ -20,7 +19,9 @@ const parseSodexoMenu = (menu) => {
   }
 };
 
-
+/**
+ * Renders menu courses on page
+ */
 const renderMenu = () => {
   const ulElement = document.querySelector('#sodexo');
   ulElement.innerHTML = '';
@@ -31,6 +32,9 @@ const renderMenu = () => {
   }
 };
 
+/**
+ * Toggle between en/fi
+ */
 const switchLanguage = () => {
   if (language === 'fi') {
     language = 'en';
@@ -48,7 +52,6 @@ const switchLanguage = () => {
  * @param {string} order 'asc'/'desc'
  * @returns {Array} sorted menu
  */
-
 const sortCourses = (courses, order = 'asc') => {
   const sortedCourses = courses.sort();
   if (order === 'desc') {
@@ -68,22 +71,24 @@ const pickARandomCourse = courses => {
   return courses[randomIndex];
 };
 
-
+/**
+ * Initialize application
+ */
 const init = () => {
   parseSodexoMenu(SodexoLunchMenu.courses);
   renderMenu();
-
-  document.querySelector('#lang').addEventListener('click', () => {
+  // Event listeners for buttons
+  document.querySelector('#switch-lang').addEventListener('click', () => {
     switchLanguage();
     renderMenu();
   });
-  document.querySelector('#random').addEventListener('click', () => {
-
+  document.querySelector('#pick-random').addEventListener('click', () => {
+    // choose random dish & display it
     alert(pickARandomCourse(currentMenu));
 
   });
-  document.querySelector('#sort').addEventListener('click', () => {
- 
+  document.querySelector('#sort-menu').addEventListener('click', () => {
+    // currentMenu = sortCourses(currentMenu);
     currentMenu = sortCourses(currentMenu, 'desc');
     renderMenu();
   });
