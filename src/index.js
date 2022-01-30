@@ -1,8 +1,8 @@
 import FazerData from './modules/fazer-data';
 import SodexoData from './modules/sodexo-data';
+
 console.log("index.js");
 let language = 'fi';
-
 
 /**
  * Renders menu courses on page
@@ -60,22 +60,24 @@ const pickARandomCourse = courses => {
   return courses[randomIndex];
 };
 
+const displayRandomCourse = () => {
+  alert('Sodexo: '+ pickrandomCourse(SodexoData.getDailyMenu(lang)) + '\n'+ 'Fazer: '+ pickrandomCourse(FazerData.getDailyMenu(lang)));
+};
+
+const renderSortedMenu = () => {
+  showMenu('sodexo', sortCourses(SodexoData.getDailyMenu(lang)));
+  showMenu('fazer', sortCourses(FazerData.getDailyMenu(lang)));
+};
+
 /**
  * Initialize application
  */
 const init = () => {
-  renderMenu(SodexoData.coursesFi, 'sodexo');
-  renderMenu(FazerData.coursesFi, 'fazer');
+  renderMenu('sodexo', SodexoData.getDailyMenu('fi'));
+  renderMenu('fazer', FazerData.getDailyMenu('fi'));
 
-  document.querySelector('#switch-lang').addEventListener('click', () => {
-    switchLanguage();
-  });
-  document.querySelector('#pick-random').addEventListener('click', () => {
-    alert(pickARandomCourse(currentMenu));
-
-  });
-  document.querySelector('#sort-menu').addEventListener('click', () => {
-    currentMenu = sortCourses(currentMenu, 'desc');
-  });
+  document.querySelector('#switch-lang').addEventListener('click', switchLanguage);
+  document.querySelector('#pick-random').addEventListener('click', renderSortedMenu);
+  document.querySelector('#sort-menu').addEventListener('click', displayRandomCourse);
 };
 init();

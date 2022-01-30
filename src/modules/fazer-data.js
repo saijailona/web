@@ -11,6 +11,8 @@ console.log("fazer-data", FazerLunchMenuEn, FazerLunchMenu);
  * @param {*} dayOfWeek - index number of the day (0: Monday)
  * @returns {Array} - meals for a day
  */
+
+
 const parseDayMenu = (lunchMenus, dayOfWeek) => {
   const dayMenu = lunchMenus[dayOfWeek].SetMenus.map(setMenu => {
     const name = setMenu.Name;
@@ -26,6 +28,12 @@ const parseDayMenu = (lunchMenus, dayOfWeek) => {
 let coursesFi = parseDayMenu(FazerLunchMenu.LunchMenus, 0);
 let coursesEn = parseDayMenu(FazerLunchMenuEn.LunchMenus, 0);;
 
-const FazerData = {coursesEn, coursesFi};
+const FazerData = {coursesEn, coursesFi, getDailyMenu};
+
+const getDailyMenu = (language, weekDay = 0) => {
+  return (language === 'fi') ?
+  parseDayMenu(FazerLunchMenuFi, weekDay):parseDayMenu(FazerLunchMenuEn, weekDay);
+};
+
 
 export default FazerData;
