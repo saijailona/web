@@ -1,5 +1,6 @@
 import SodexoData from './modules/sodexo-data';
 import FazerData from './modules/fazer-data';
+import {getJsonMenu} from './modules/onlinelunches';
 
 let lang = 'fi';
 
@@ -62,11 +63,19 @@ const renderSortedMenu = () => {
 
 
 const init = () => {
-  showMenu('sodexo', SodexoData.getDailyMenu('fi'));
-  showMenu('fazer', FazerData.getDailyMenu('fi'));
+
+  renderSortedMenu(FazerData.coursesFi, 'fazer');
+  fetchData('https://www.sodexo.fi/ruokalistat/output/weekly_json/152').then(data => {
+    console.log(data);
+  });
+
+  /*showMenu('sodexo', SodexoData.getDailyMenu('fi'));
+  showMenu('fazer', FazerData.getDailyMenu('fi'));*/
   document.querySelector('#switch-lang').addEventListener('click', changeLanguage);
   document.querySelector('#sort-menu').addEventListener('click', renderSortedMenu);
   document.querySelector('#pick-random').addEventListener('click', displayRandomCourse);
 };
 
 init();
+
+

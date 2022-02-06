@@ -1,5 +1,18 @@
 import FazerLunchMenuEn from './fazer-week-example-en.json';
 import FazerLunchMenuFi from './fazer-week-example.json';
+import {getJsonMenu} from './onlinelunches';
+
+
+Date.prototype.addHours = function(h) {
+  this.setTime(this.getTime() + (h*60*60*1000));
+  return this;
+};
+const date = new Date().addHours(4).toISOString().slice(0, 10);
+console.log(date);
+
+const dataUrlFi = 'https://www.foodandco.fi/api/restaurant/menu/week?language=fi&restaurantPageId=270540&weekDate=' + date;
+const dataUrlEn = 'https://www.foodandco.fi/api/restaurant/menu/week?language=en&restaurantPageId=270540&weekDate=' + date;
+
 
 /**
  * Parsing fazer menu for a day from json data
@@ -27,6 +40,7 @@ const getDailyMenu = (lang, weekDay = 0) => {
   parseMenu(FazerLunchMenuFi, weekDay):parseMenu(FazerLunchMenuEn, weekDay);
 };
 
-const FazerData = {getDailyMenu};
+/*const FazerData = {getDailyMenu};*/
 
+const FazerData = {parseMenu, dataUrlFi, dataUrlEn};
 export default FazerData;
