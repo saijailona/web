@@ -1,16 +1,284 @@
+
+:root {
+  --main-green: #43E04F;
+  --main-burgundy: #940E3F;
+  --main-darkgrey: #343A40;
+  --main-lightgrey: #9BADBF;
+
+  --extra-green1: #1D9426;
+  --extra-green2: #65FF71;
+  --extra-pink: #E0437C;
+
+  --otsikko: Roboto Slab ExtraBold;
+  --slogan: Roboto Slab Regular;
+  --ravintola: Lato Heavy;
+  --valikko: Lato Bold;
+  --leipateksti: Lato Regular;
+  --ruokalista: Lato Regular;
+  --sijainti: Lato Regular;
+
+}
+
+@font-face {
+  font-family: LatoHeavy;
+  src: url(Lato/Lato-Bold.ttf);
+}
+
+@font-face {
+  font-family: LatoRegular;
+  src: url(Lato/Lato-Regular.ttf);
+}
+
 body {
-  margin: 10%;
+  min-height: calc(100vh);
+  background-attachment: fixed;
+
 }
 
-.container-box {
-  display: flex;
-  flex-wrap: wrap;
+a{
+  color: var(--main-burgundy);
+  text-decoration: none;
+}
+
+.item {
+  align-items: center;
+}
+
+.container {
+  margin-bottom: 50px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas:
+      "navbar navbar navbar"
+      "header header header"
+      "content content content"
+      "footer footer footer";
+
+  grid-template-columns: auto;
+  grid-template-rows: 1fr 200px 2fr;
+  /* grid-auto-flow: dense;
+  grid-auto-rows: 100px; */
+  /* grid-auto-rows: 100px 30px; */
+}
+
+.item1 {
+  grid-area: navbar;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.item1 ul {
+  list-style-type: none;
+  display: inline-flex;
+}
+
+.item1 li {
+  margin-right: 20px;
+  font-family: LatoHeavy;
+  font-size: 20px;
+  color: var(--main-burgundy);
+
+}
+
+.item1 input {
+  border: none;
+}
+
+.item2 {
+  grid-area: header;
+  overflow: hidden;
+}
+
+.item3 {
+  grid-area: content;
+}
+
+.container2 {
+  display: grid;
   width: 90%;
+  margin: auto;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 200px 200px;
+  grid-gap: 20px;
 }
 
-.restaurant-box {
+.container2 h2 {
+  font-family: LatoHeavy;
+  font-size: 20px;
+}
+
+.menu {
+  font-family: LatoRegular;
+  margin-left: 10px;
+
+}
+
+.mitem {
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;   
+  flex-direction: row; 
+  position: relative;
+  height: fit-content;
+
+}
+
+.col{
+  display: flex;
+  flex-direction: column;
+}
+
+figure {
+  margin: auto 0 auto 20px;
+  padding: 0;
+  border: 1px solid black;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svgsearch {
+  height: 20px;
+  padding: 2px 0 0 2px;
+  fill: var(--main-burgundy);
+}
+
+.svg{
+  height: 40px;
+  padding: 2px 0 0 2px;
+  position: absolute;
+  right: 0;
+}
+
+.svg:hover{
+  fill: var(--main-green);
+}
+
+
+
+#searchfield {
+  border: 1px solid var(--main-burgundy);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  padding: 2px;
+}
+
+.menulogo {
+  width: 100px;
+}
+
+#banner {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#triangle-bottomleft {
+  width: 45%;
+  height: 0;
+  border-bottom: 200px solid var(--main-green );
+  border-right: 150px solid transparent;
+  position: absolute;
+  left: 0;
+  margin-left: 8px;
+}
+
+#triangle-bottomleft::after {
+  position: absolute;
+}
+
+.headercontainer {
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.content {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  line-height: 1.5;
+  color: var(--main-darkgrey);
+}
+
+.addrest{
+  width: 90%;
+  margin:auto;
+  margin-top:10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+.svgadd{
+  width: 30px;
+  fill: var(--main-lightgrey);
   margin: 10px;
-  border: solid 2px black;
+}
+
+p{
+  font-family: LatoRegular;
+}
+button{
+  background: none;
+color: inherit;
+border: none;
+padding: 0;
+font: inherit;
+cursor: pointer;
+outline: inherit;
+}
+.svgadd:hover{
+  fill: var(--main-darkgrey);
+}
+@media (max-width: 1000px) {
+  .container {
+      grid-template-areas:
+          "navbar navbar navbar"
+          "header header header"
+          "content content content"
+  }
+
+  .container2 {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 200px;
+  }
+
+  .loc{
+      display: flex;
+      justify-content: flex-end;
+  }
+
+}
+
+.napit {
+  margin: 50px auto;
+  width: 50%;
+  text-align: center;
+}
+
+#switch-lang {
+  border: 2px solid black;
+  border-radius: 10px;
   padding: 10px;
-  border-radius: 7%;
+  background-color: rgb(199, 199, 199);
+}
+
+#sort-menu {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgb(199, 199, 199);
+}
+
+#pick-random {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgb(199, 199, 199);
 }
